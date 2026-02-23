@@ -11,6 +11,13 @@ struct ContentView: View {
         VStack {
             Text("\(number)")
                             .font(.system(size: 80, weight: .bold))
+            
+            HStack(spacing: 40) {
+                Button("Prime") {
+                    print("Prime Selected")
+                }
+            }
+            
         }
         .padding()
     }
