@@ -59,7 +59,6 @@ struct ContentView: View {
         .padding()
         .alert("Results After 10 Attempts", isPresented: $showAlert) {
             Button("OK") {
-                // Dismiss alert and reset the timer
                 showAlert = false
                 resetTimer()
             }
@@ -72,13 +71,19 @@ struct ContentView: View {
             if !userAnswered {
                 wrongCount += 1
                 attempts += 1
+                showCross = true
+                showTick = false
+
+                userAnswered = true
 
                 if attempts % 10 == 0 {
                     showAlert = true
                 }
-            }
 
-            generateNewNumber()
+                
+                generateNewNumber()
+            
+            }
         }
     }
     
@@ -100,7 +105,7 @@ struct ContentView: View {
     }
     
     func checkAnswer(userSaysPrime: Bool) {
-        if userAnswered || showAlert { return }   // ignore taps while paused
+        if userAnswered || showAlert { return }
             userAnswered = true
         
         let actualPrime = isPrime(number)
@@ -128,7 +133,7 @@ struct ContentView: View {
     }
     
     func resetTimer() {
-        timer.upstream.connect().cancel() // cancel the current timer
+        timer.upstream.connect().cancel() 
         timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     }
 }
