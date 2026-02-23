@@ -31,6 +31,17 @@ struct ContentView: View {
             Text("Correct: \(correctCount)   Wrong: \(wrongCount)")
                 .font(.title3)
             
+            if showTick {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.green)
+            }
+
+            if showCross {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.red)
+            }
         }
         .padding()
     }
