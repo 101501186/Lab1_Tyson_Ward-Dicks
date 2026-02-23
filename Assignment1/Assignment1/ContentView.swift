@@ -6,6 +6,9 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var number = Int.random(in: 1...100)
+    @State private var correctCount = 0
+    @State private var wrongCount = 0
+    @State private var attempts = 0
     
     var body: some View {
         VStack {
