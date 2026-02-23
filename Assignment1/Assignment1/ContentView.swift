@@ -26,6 +26,9 @@ struct ContentView: View {
             }
             .font(.title)
             
+            Text("Correct: \(correctCount)   Wrong: \(wrongCount)")
+                .font(.title3)
+            
         }
         .padding()
     }
