@@ -9,6 +9,8 @@ struct ContentView: View {
     @State private var correctCount = 0
     @State private var wrongCount = 0
     @State private var attempts = 0
+    @State private var showTick = false
+    @State private var showCross = false
     
     var body: some View {
         VStack {
