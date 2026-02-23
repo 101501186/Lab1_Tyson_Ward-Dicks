@@ -1,19 +1,16 @@
-//
-//  ContentView.swift
-//  Assignment1
-//
-//  Created by Tyson Ward-Dicks on 2026-02-22.
-//
+// COMP 3097 Lab Assignment 1
+// Tyson Ward-Dicks - 101501186
 
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var number = Int.random(in: 1...100)
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("\(number)")
+                            .font(.system(size: 80, weight: .bold))
         }
         .padding()
     }
