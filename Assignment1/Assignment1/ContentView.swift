@@ -55,9 +55,13 @@ struct ContentView: View {
 
         if userSaysPrime == actualPrime {
             correctCount += 1
+            showTick = true
+            showCross = false
             print("Correct!")
         } else {
             wrongCount += 1
+            showCross = true
+            showTick = false
             print("Wrong!")
         }
         attempts += 1
