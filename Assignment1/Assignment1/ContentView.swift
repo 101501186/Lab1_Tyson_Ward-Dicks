@@ -11,8 +11,10 @@ struct ContentView: View {
     @State private var attempts = 0
     @State private var showTick = false
     @State private var showCross = false
+    @State private var showAlert = false
     
     var body: some View {
+        
         VStack {
             Text("\(number)")
                             .font(.system(size: 80, weight: .bold))
@@ -46,8 +48,15 @@ struct ContentView: View {
                     .font(.system(size: 60))
                     .foregroundColor(.red)
             }
+            
+            
         }
         .padding()
+        .alert("Results After 10 Attempts", isPresented: $showAlert) {
+                    Button("OK") { }
+                } message: {
+                    Text("Correct: \(correctCount)\nWrong: \(wrongCount)")
+                }
     }
     
     func isPrime(_ n: Int) -> Bool {
@@ -80,6 +89,11 @@ struct ContentView: View {
             print("Wrong!")
         }
         attempts += 1
+        
+        if attempts % 10 == 0 {
+            showAlert = true
+        }
+        
         generateNewNumber()
     }
 }
