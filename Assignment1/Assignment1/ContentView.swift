@@ -75,6 +75,17 @@ struct ContentView: View {
                     .padding(.top, 20)
             }
             
+            Button("Reset Game") {
+                resetGame()
+            }
+            .font(.title3)
+            .padding()
+            .frame(width: 180, height: 50)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(15)
+            .shadow(radius: 5)
+            
             
         }
         .padding()
@@ -156,6 +167,17 @@ struct ContentView: View {
     func resetTimer() {
         timer.upstream.connect().cancel()
         timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    }
+    
+    func resetGame() {
+        correctCount = 0
+        wrongCount = 0
+        attempts = 0
+        showTick = false
+        showCross = false
+        userAnswered = false
+        generateNewNumber()
+        resetTimer()        
     }
 }
 
