@@ -21,6 +21,7 @@ struct ContentView: View {
                     print("Not Prime tapped")
                 }
             }
+            .font(.title)
             
         }
         .padding()
