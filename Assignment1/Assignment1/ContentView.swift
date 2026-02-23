@@ -3,6 +3,8 @@
 
 import SwiftUI
 
+import Combine
+
 struct ContentView: View {
     
     @State private var number = Int.random(in: 1...100)
@@ -12,6 +14,9 @@ struct ContentView: View {
     @State private var showTick = false
     @State private var showCross = false
     @State private var showAlert = false
+    @State private var userAnswered = false   // new: tracks if user has answered current number
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect() // new: 5-second timer
+    
     
     var body: some View {
         
@@ -57,6 +62,18 @@ struct ContentView: View {
                 } message: {
                     Text("Correct: \(correctCount)\nWrong: \(wrongCount)")
                 }
+        .onReceive(timer) { _ in
+            if !userAnswered {
+                wrongCount += 1
+                attempts += 1
+
+                if attempts % 10 == 0 {
+                    showAlert = true
+                }
+            }
+
+            generateNewNumber()
+        }
     }
     
     func isPrime(_ n: Int) -> Bool {
@@ -72,9 +89,13 @@ struct ContentView: View {
     
     func generateNewNumber() {
         number = Int.random(in: 1...100)
+        userAnswered = false
     }
     
     func checkAnswer(userSaysPrime: Bool) {
+        if userAnswered { return }   // ignore multiple taps
+            userAnswered = true
+        
         let actualPrime = isPrime(number)
 
         if userSaysPrime == actualPrime {
