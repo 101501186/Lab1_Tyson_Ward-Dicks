@@ -40,6 +40,10 @@ struct ContentView: View {
         }
         return true
     }
+    
+    func generateNewNumber() {
+        number = Int.random(in: 1...100)
+    }
 }
 
 #Preview {
