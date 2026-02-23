@@ -26,6 +26,17 @@ struct ContentView: View {
         }
         .padding()
     }
+    
+    func isPrime(_ n: Int) -> Bool {
+        if n <= 1 { return false }
+        if n <= 3 { return true }
+        for i in 2...Int(sqrt(Double(n))) {
+            if n % i == 0 {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 #Preview {
