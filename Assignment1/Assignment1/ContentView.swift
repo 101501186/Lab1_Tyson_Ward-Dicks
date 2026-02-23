@@ -22,36 +22,57 @@ struct ContentView: View {
         
         VStack {
             Text("\(number)")
-                            .font(.system(size: 80, weight: .bold))
+                .font(.system(size: 80, weight: .bold))
+                .foregroundColor(.blue)
+                .padding(50)
+                .shadow(radius: 5)
             
             HStack(spacing: 40) {
                 Button("Prime") {
                     checkAnswer(userSaysPrime: true)
                 }
+                .font(.title)
+                .foregroundColor(.white)
+                .frame(width: 140, height: 60)
+                .background(Color.green)
+                .cornerRadius(15)
+                .shadow(radius: 5)
                 
                 Button("Not Prime") {
                     checkAnswer(userSaysPrime: false)
                 }
+                .font(.title)
+                .foregroundColor(.white)
+                .frame(width: 140, height: 60)
+                .background(Color.green)
+                .cornerRadius(15)
+                .shadow(radius: 5)
             }
-            .font(.title)
+            
             
             Text("Correct: \(correctCount)   Wrong: \(wrongCount)")
                 .font(.title3)
+                .padding(.top, 20)
             
             Text("Attempts: \(attempts)")
                 .font(.caption)
                 .foregroundColor(.gray)
+                .padding(.top, 5)
             
             if showTick {
                 Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 60))
+                    .font(.system(size: 100))
                     .foregroundColor(.green)
+                    .transition(.scale)
+                    .padding(.top, 20)
             }
 
             if showCross {
                 Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: 60))
+                    .font(.system(size: 100))
                     .foregroundColor(.red)
+                    .transition(.scale)
+                    .padding(.top, 20)
             }
             
             
@@ -133,7 +154,7 @@ struct ContentView: View {
     }
     
     func resetTimer() {
-        timer.upstream.connect().cancel() 
+        timer.upstream.connect().cancel()
         timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     }
 }
