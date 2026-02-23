@@ -16,6 +16,10 @@ struct ContentView: View {
                 Button("Prime") {
                     print("Prime Selected")
                 }
+                
+                Button("Not Prime") {
+                    print("Not Prime tapped")
+                }
             }
             
         }
