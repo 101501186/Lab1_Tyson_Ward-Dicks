@@ -44,6 +44,10 @@ struct ContentView: View {
     func generateNewNumber() {
         number = Int.random(in: 1...100)
     }
+    
+    func checkAnswer(userSaysPrime: Bool) {
+        print("User answered: \(userSaysPrime ? "Prime" : "Not Prime")")
+    }
 }
 
 #Preview {
