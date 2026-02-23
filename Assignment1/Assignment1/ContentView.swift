@@ -46,7 +46,17 @@ struct ContentView: View {
     }
     
     func checkAnswer(userSaysPrime: Bool) {
-        print("User answered: \(userSaysPrime ? "Prime" : "Not Prime")")
+        let actualPrime = isPrime(number)
+
+        if userSaysPrime == actualPrime {
+            correctCount += 1
+            print("Correct!")
+        } else {
+            wrongCount += 1
+            print("Wrong!")
+        }
+        attempts += 1
+        generateNewNumber()
     }
 }
 
