@@ -58,11 +58,17 @@ struct ContentView: View {
         }
         .padding()
         .alert("Results After 10 Attempts", isPresented: $showAlert) {
-                    Button("OK") { }
-                } message: {
-                    Text("Correct: \(correctCount)\nWrong: \(wrongCount)")
-                }
+            Button("OK") {
+                // Dismiss alert and reset the timer
+                showAlert = false
+                resetTimer()
+            }
+        } message: {
+            Text("Correct: \(correctCount)\nWrong: \(wrongCount)")
+        }
         .onReceive(timer) { _ in
+            if showAlert { return }
+
             if !userAnswered {
                 wrongCount += 1
                 attempts += 1
@@ -94,7 +100,7 @@ struct ContentView: View {
     }
     
     func checkAnswer(userSaysPrime: Bool) {
-        if userAnswered { return }   // ignore multiple taps
+        if userAnswered || showAlert { return }   // ignore taps while paused
             userAnswered = true
         
         let actualPrime = isPrime(number)
