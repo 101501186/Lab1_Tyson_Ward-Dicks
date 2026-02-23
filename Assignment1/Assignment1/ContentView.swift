@@ -14,8 +14,8 @@ struct ContentView: View {
     @State private var showTick = false
     @State private var showCross = false
     @State private var showAlert = false
-    @State private var userAnswered = false   // new: tracks if user has answered current number
-    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect() // new: 5-second timer
+    @State private var userAnswered = false
+    @State private var timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
     
     var body: some View {
@@ -90,6 +90,7 @@ struct ContentView: View {
     func generateNewNumber() {
         number = Int.random(in: 1...100)
         userAnswered = false
+        resetTimer()
     }
     
     func checkAnswer(userSaysPrime: Bool) {
@@ -115,7 +116,14 @@ struct ContentView: View {
             showAlert = true
         }
         
+        resetTimer()
+        
         generateNewNumber()
+    }
+    
+    func resetTimer() {
+        timer.upstream.connect().cancel() // cancel the current timer
+        timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     }
 }
 
