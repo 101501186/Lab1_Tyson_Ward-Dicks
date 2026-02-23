@@ -17,11 +17,11 @@ struct ContentView: View {
             
             HStack(spacing: 40) {
                 Button("Prime") {
-                    print("Prime Selected")
+                    checkAnswer(userSaysPrime: true)
                 }
                 
                 Button("Not Prime") {
-                    print("Not Prime tapped")
+                    checkAnswer(userSaysPrime: false)
                 }
             }
             .font(.title)
